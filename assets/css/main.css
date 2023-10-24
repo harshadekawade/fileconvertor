@@ -1,0 +1,37 @@
+:root {
+  --primary: rgb(93, 146, 251);
+  --secondary: rgb(173, 212, 248);
+}
+
+body {
+  background-color: rgb(230, 230, 230);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.card {
+  margin: 10px 30px;
+}
+
+.card-body {
+  width: 45%;
+  align-self: center;
+}
+
+.card-body h4 {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+input[type="file"] {
+  border: 1px solid var(--secondary);
+  color: var(--primary);
+}
+
+button.convert {
+  background-color: var(--primary);
+  color: white;
+  border: 1px solid var(--secondary);
+  border-radius: 5px;
+  width: 100%;
+  padding: 6px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image convertor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+
+  <body>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="text-center">Image File convertor</h4>
+        <br />
+        <div class="error"></div>
+        <input type="file" class="form-control mb-3" />
+        <convertto style="display: none">
+          <h6 class="text-center text-danger mb-3">Convert PNG</h6>
+          <select name="imagetype" class="form-select">
+            <option value="" selected disabled>Select filetype</option>
+            <option value="jpg">JPG</option>
+            <option value="jpeg">JPEG</option>
+            <option value="svg">SVG</option>
+            <option value="webp">Webp</option>
+            <option value="pdf">pdf</option>
+          </select>
+        </convertto>
+        <br />
+        <button class="convert" style="display: none">CONVERT</button>
+      </div>
+    </div>
+
+    <bootstrapalert style="display: none">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        File type should be PNG Image
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+    </bootstrapalert>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/main.js"></script>
+</html>
