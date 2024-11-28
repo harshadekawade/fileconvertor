@@ -3,9 +3,41 @@
   --secondary: rgb(173, 212, 248);
 }
 
+@font-face {
+  font-family: Nunito;
+  src: url(../font/Nunito-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Nunito;
+  src: url(../font/Nunito-SemiBold.ttf);
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: Nunito;
+  src: url(../font/Nunito-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Nunito;
+  src: url(../font/Nunito-Regular.ttf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Nunito;
+  src: url(../font/Nunito-Light.ttf);
+  font-weight: lighter;
+}
+
+
 body {
-  background-color: rgb(230, 230, 230);
-  font-family: "Courier New", Courier, monospace;
+  /* background-color: rgb(230, 230, 230); */
+  background: url(../images/bg.png);
+  font-family: Nunito;
 }
 
 .card {
@@ -15,11 +47,6 @@ body {
 .card-body {
   width: 45%;
   align-self: center;
-}
-
-.card-body h4 {
-  color: var(--primary);
-  font-weight: 600;
 }
 
 input[type="file"] {
@@ -34,4 +61,131 @@ button.convert {
   border-radius: 5px;
   width: 100%;
   padding: 6px;
+}
+
+.container-box {
+  background-color: white;
+  border-radius: 10px;
+  padding: 50px;
+  width: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 5px 16px -2px rgb(93 146 252 / 35%);
+  max-width: 90%;
+}
+
+.container-box h4 {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.drag-area {
+  height: 215px;
+  border: 3px dashed #e0eafc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.drag-area:hover {
+  background-color: #5d92fb1a;
+}
+
+.img-preview {
+  position: relative;
+  border: 2px solid #e0eafc;
+  padding: 10px;
+}
+
+.img-preview i {
+  position: absolute;
+  display: inline-block;
+  right: -10px;
+  top: -10px;
+  font-size: 20px;
+}
+
+.upload-content {
+  text-align: center;
+}
+
+.upload-content i {
+  font-size: 30px;
+  color: #7c7c7c;
+}
+
+.drag-area .upload-content h5 {
+  color: #7c7c7c;
+  font-weight: 700;
+}
+
+span.supports-file {
+  font-weight: 500;
+  font-size: 14px;
+  color: grey;
+}
+
+.browse-file-text {
+  counter-reset: var(--primary);
+}
+
+.container-box h6 {
+  font-weight: 700;
+  color: #7c7c7c;
+}
+
+.container-box select {
+  padding: 10px;
+  border: 2px solid #e0eafc;
+  color: #7c7c7c;
+  font-weight: 500;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%237c7c7c' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.drag-area .upload-content {
+  display: block;
+}
+
+.drag-area .img-preview {
+  display: none;
+}
+
+.drag-area.active .upload-content {
+  display: none;
+}
+
+.drag-area.active .img-preview {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .container-box {
+    width: 90%;
+    padding: 50px 20px 50px 20px;
+  }
 }
