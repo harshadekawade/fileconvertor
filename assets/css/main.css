@@ -183,6 +183,11 @@ span.supports-file {
   display: block;
 }
 
+select option:disabled {
+  color: grey;
+  background: rgba(128, 128, 128, 0.2);
+}
+
 @media screen and (max-width: 768px) {
   .container-box {
     width: 90%;

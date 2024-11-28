@@ -33,7 +33,6 @@ outputFormat.addEventListener('change', function () {
     convertButton.style.display = "block";
 });
 
-
 convertButton.addEventListener('click', function () {
 });
 
@@ -73,6 +72,7 @@ window.addEventListener('drop', (e) => {
 
 removeImg.addEventListener('click', function () {
     dropArea.classList.remove('active');
+    input.value = "";
     imgPreview.src = "";
     isCloseButtonClicked = true;
     outputFormat.style.display = "none";
@@ -81,19 +81,24 @@ removeImg.addEventListener('click', function () {
 
 function displayFile() {
     let fileType = file.type;
-    console.log(fileType);
-
     let validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
-
     if (validExtensions.includes(fileType)) {
         let fileReader = new FileReader();
-
         fileReader.onload = () => {
             let fileURL = fileReader.result;
             imgPreview.src = fileURL;
         };
         fileReader.readAsDataURL(file);
         outputFormat.style.display = "block";
+        document.querySelectorAll("select[name='imagetype'] option").forEach(opt => {
+            if (opt.value == fileType) {
+                opt.disabled = true;
+            } else {
+                opt.disabled = false;
+            }
+        });
+        document.querySelectorAll("select[name='imagetype']").value = "";
+        convertButton.style.display = "block";
     } else {
         alert('This is not an Image File');
         dropArea.classList.remove('active');

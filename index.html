@@ -11,55 +11,41 @@
 </head>
 
 <body>
-  <div class="container-box">
-    <h4 class="text-center">Image File convertor</h4>
-    <br />
-    <div class="error"></div>
-    <div class="drag-area">
-      <div class="img-preview">
-        <img src="" height="150" alt="img-preview">
-        <i class="fa-solid fa-circle-xmark remove-file"></i>
+  <form action="">
+    <div class="container-box">
+      <h4 class="text-center">Image File convertor</h4>
+      <br />
+      <div class="error"></div>
+      <div class="drag-area">
+        <div class="img-preview">
+          <img src="" height="150" alt="img-preview">
+          <i class="fa-solid fa-circle-xmark remove-file"></i>
+        </div>
+        <div class="upload-content">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <br>
+          <br>
+          <h5>Drag and Drop here</h5>
+          <h5>or</h5>
+          <input type="file" hidden />
+          <h5 class="browse-file-text">Browse Files</h5>
+        </div>
       </div>
-      <div class="upload-content">
-        <i class="fa-solid fa-cloud-arrow-up"></i>
+      <span class="supports-file">Supports: PNG, JPG, JPEG, WEBP</span>
+      <div class="op-format" style="display: none;">
         <br>
+        <h6>Output Format</h6>
+        <select name="imagetype" class="form-select">
+          <option value="image/png">PNG</option>
+          <option value="image/jpg" selected>JPG</option>
+          <option value="image/jpeg">JPEG</option>
+          <option value="image/webp">Webp</option>
+        </select>
         <br>
-        <h5>Drag and Drop here</h5>
-        <h5>or</h5>
-        <input type="file" hidden />
-        <h5 class="browse-file-text">Browse Files</h5>
       </div>
+      <button class="convert" style="display: none;">CONVERT</button>
     </div>
-    <span class="supports-file">Supports: PNG, JPG, JPEG, WEBP</span>
-    <div class="op-format" style="display: none;">
-      <br>
-      <h6>Output Format</h6>
-      <select name="imagetype" class="form-select">
-        <option value="" selected disabled>Select</option>
-        <option value="png">PNG</option>
-        <option value="jpg">JPG</option>
-        <option value="jpeg">JPEG</option>
-        <option value="webp">Webp</option>
-      </select>
-      <br>
-    </div>
-    <button class="convert" style="display: none;">CONVERT</button>
-    <!-- <input type="file" class="form-control mb-3" />
-
-    <convertto style="display: none">
-      <h6 class="text-center text-danger mb-3">Convert PNG</h6>
-      <select name="imagetype" class="form-select">
-        <option value="" selected disabled>Select filetype</option>
-        <option value="jpg">JPG</option>
-        <option value="jpeg">JPEG</option>
-        <option value="svg">SVG</option>
-        <option value="webp">Webp</option>
-        <option value="pdf">pdf</option>
-      </select>
-    </convertto>
-    <br />
-    <button class="convert" style="display: none">CONVERT</button> -->
-  </div>
+  </form>
 
   <bootstrapalert style="display: none">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
