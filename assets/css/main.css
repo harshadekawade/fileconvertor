@@ -251,6 +251,10 @@ footer a {
   text-decoration: none;
 }
 
+footer a:hover {
+  color: white;
+}
+
 @media screen and (max-width: 768px) {
   .container-box {
     width: 90%;
