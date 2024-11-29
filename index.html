@@ -5,55 +5,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Image convertor</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/css/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css" rel="stylesheet" />
 </head>
 
 <body>
-  <form action="">
-    <div class="container-box">
-      <h4 class="text-center">Image File convertor</h4>
-      <br />
-      <div class="error"></div>
-      <div class="drag-area">
-        <div class="img-preview">
-          <img src="" height="150" alt="img-preview">
-          <i class="fa-solid fa-circle-xmark remove-file"></i>
+  <div class="header">
+    <img src="/assets/images/logo.png" alt="" height="60">
+  </div>
+  <div class="content">
+    <h4>Effortless Image Conversion, Anytime, Anywhere</h4>
+    <span>Transform your images with ease using <strong>Pic2Pic</strong>, the ultimate image-to-image file
+      converter.</span>
+  </div>
+  <div class="wrapper">
+    <div class="bgr">
+      <div class="container-box">
+        <h2 class="text-center">Free Image File convertor</h2>
+        <br />
+        <div class="error"></div>
+        <div class="drag-area">
+          <div class="img-preview">
+            <img src="" alt="img-preview">
+            <i class="fa-solid fa-circle-xmark remove-file"></i>
+          </div>
+          <div class="upload-content">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <br>
+            <br>
+            <h5>Drag and Drop here</h5>
+            <h5>or</h5>
+            <input type="file" hidden accept="image/png, image/jpg, image/jpeg, image/webp" />
+            <h5 class="browse-file-text">Browse Files</h5>
+          </div>
         </div>
-        <div class="upload-content">
-          <i class="fa-solid fa-cloud-arrow-up"></i>
+        <span class="supports-file">Supports: PNG, JPG, JPEG, WEBP</span>
+        <div class="op-format" style="display: none;">
           <br>
+          <h6>Output Format</h6>
+          <select name="imagetype" id="outputFormat" class="form-select">
+            <option value="image/png">PNG</option>
+            <option value="image/jpg" selected>JPG</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">Webp</option>
+          </select>
           <br>
-          <h5>Drag and Drop here</h5>
-          <h5>or</h5>
-          <input type="file" hidden />
-          <h5 class="browse-file-text">Browse Files</h5>
+          <button class="convert">CONVERT</button>
         </div>
       </div>
-      <span class="supports-file">Supports: PNG, JPG, JPEG, WEBP</span>
-      <div class="op-format" style="display: none;">
-        <br>
-        <h6>Output Format</h6>
-        <select name="imagetype" class="form-select">
-          <option value="image/png">PNG</option>
-          <option value="image/jpg" selected>JPG</option>
-          <option value="image/jpeg">JPEG</option>
-          <option value="image/webp">Webp</option>
-        </select>
-        <br>
-      </div>
-      <button class="convert" style="display: none;">CONVERT</button>
     </div>
-  </form>
-
-  <bootstrapalert style="display: none">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      File type should be PNG Image
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  </bootstrapalert>
-
+  </div>
   <div class="overlay" id="overlay">
     <div class="drag-area" style="border: none;">
       <div class="upload-content">
@@ -63,9 +67,14 @@
       </div>
     </div>
   </div>
+  <canvas id="imageCanvas"></canvas>
+
+  <footer>Copyright ©2024 <a href="javascript:;">Harshad Ekawade.</a>
+    All Rights Reserved</footer>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./assets/js/main.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/drag-drop-event.js"></script>
 
 </html>

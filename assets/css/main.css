@@ -33,25 +33,41 @@
   font-weight: lighter;
 }
 
-
 body {
-  /* background-color: rgb(230, 230, 230); */
+  margin: 0;
   background: url(../images/bg.png);
   font-family: Nunito;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.card {
-  margin: 10px 30px;
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  background-color: white;
 }
 
-.card-body {
-  width: 45%;
-  align-self: center;
+body::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
 }
 
-input[type="file"] {
-  border: 1px solid var(--secondary);
-  color: var(--primary);
+body::-webkit-scrollbar-thumb {
+  background-color: #93b7ff;
+}
+
+body .content {
+  text-align: center;
+  margin: 0px 20px 20px 20px;
+}
+
+body .content h4 {
+  color: #7c7c7c;
+  font-weight: 700;
+}
+
+body .content span {
+  color: grey;
 }
 
 button.convert {
@@ -63,20 +79,44 @@ button.convert {
   padding: 6px;
 }
 
+.header {
+  overflow: hidden;
+  background: var(--primary);
+  z-index: 1;
+  width: 100%;
+  padding: 20px 10px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 4px -2px rgb(93 146 252 / 35%);
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.bgr {
+  width: 80%;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  background: url(/assets/images/bg-container.webp);
+  background-size: cover;
+  border-radius: 10px;
+}
+
 .container-box {
+  user-select: none;
   background-color: white;
   border-radius: 10px;
   padding: 50px;
-  width: 40%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   box-shadow: 0px 5px 16px -2px rgb(93 146 252 / 35%);
-  max-width: 90%;
+  width: 60%;
 }
 
-.container-box h4 {
+.container-box h2 {
   color: var(--primary);
   font-weight: 600;
 }
@@ -183,14 +223,51 @@ span.supports-file {
   display: block;
 }
 
+.img-preview img {
+  height: 150px;
+}
+
 select option:disabled {
   color: grey;
   background: rgba(128, 128, 128, 0.2);
+}
+
+#imageCanvas {
+  display: none;
+}
+
+
+footer {
+  margin-top: auto;
+  background: var(--primary);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+footer a {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {
   .container-box {
     width: 90%;
     padding: 50px 20px 50px 20px;
+  }
+
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .bgr {
+    width: 100%;
+    border-radius: 0;
+    padding: 20px 0px;
+  }
+
+  .img-preview img {
+    height: 100;
   }
 }

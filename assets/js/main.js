@@ -1,106 +1,99 @@
-// $('input[type="file"]').change(function () {
-//     var file = this.files[0];
-//     var fileType = file["type"];
-//     var validImageTypes = ["image/png"];
-//     if ($.inArray(fileType, validImageTypes) < 0) {
-//         $('convertto').hide();
-//         $('button.convert').hide();
-//         $('.error').html($('bootstrapalert').html());
-//     } else {
-//         $('.error').html('');
-//         $('convertto').show();
-//     }
-// });
-
-// $('select[name="imagetype"]').change(function () {
-//     $('button.convert').show();
-//     $('button.convert').text('Convert and Download');
-// });
-
 const overlay = document.getElementById('overlay');
 const dropArea = document.querySelector('.drag-area');
-const input = document.querySelector('input[type="file"]');
-const body = document.querySelector('body');
+const inputFile = document.querySelector('input[type="file"]');
 const imgPreview = document.querySelector('.img-preview img');
-const removeImg = document.querySelector('.remove-file');
-const outputFormat = document.querySelector('.op-format');
+const removeImgButtom = document.querySelector('.remove-file');
+const outputFormatDiv = document.querySelector('.op-format');
+const outputFormat = document.querySelector('#outputFormat');
 const convertButton = document.querySelector('.convert');
+const canvas = document.getElementById('imageCanvas');
+const ctx = canvas.getContext('2d');
 var isCloseButtonClicked = false;
-
 let file;
+let image = new Image();
 
-outputFormat.addEventListener('change', function () {
-    convertButton.style.display = "block";
-});
+convertButton.addEventListener('click', convertAndDownload);
 
-convertButton.addEventListener('click', function () {
-});
-
+// Browse files
 dropArea.onclick = () => {
     if (!isCloseButtonClicked) {
-        input.click();
+        inputFile.click();
     } else {
         isCloseButtonClicked = false;
     }
 };
 
-input.addEventListener('change', function () {
+inputFile.addEventListener('change', function () {
     file = this.files[0];
     dropArea.classList.add('active');
     displayFile();
 });
 
-// Show overlay when a file is dragged
-window.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    overlay.classList.add('active');
-});
+removeImgButtom.addEventListener('click', removeImg);
 
-// Hide overlay when drag leaves the window
-window.addEventListener('dragleave', (e) => {
-    e.preventDefault();
-    overlay.classList.remove('active');
-});
-
-// Handle file drop
-window.addEventListener('drop', (e) => {
-    e.preventDefault();
+function removeImg() {
     dropArea.classList.remove('active');
-    file = e.dataTransfer.files[0];
-    displayFile();
-});
-
-removeImg.addEventListener('click', function () {
-    dropArea.classList.remove('active');
-    input.value = "";
+    inputFile.value = "";
     imgPreview.src = "";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.width = 0;
+    canvas.height = 0;
     isCloseButtonClicked = true;
-    outputFormat.style.display = "none";
-    convertButton.style.display = "none";
-});
+    outputFormatDiv.style.display = "none";
+}
 
 function displayFile() {
-    let fileType = file.type;
-    let validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
-    if (validExtensions.includes(fileType)) {
-        let fileReader = new FileReader();
-        fileReader.onload = () => {
-            let fileURL = fileReader.result;
-            imgPreview.src = fileURL;
-        };
-        fileReader.readAsDataURL(file);
-        outputFormat.style.display = "block";
-        document.querySelectorAll("select[name='imagetype'] option").forEach(opt => {
-            if (opt.value == fileType) {
-                opt.disabled = true;
-            } else {
-                opt.disabled = false;
+    if (file) {
+        let fileType = file.type;
+        let validExtensions = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
+        if (validExtensions.includes(fileType)) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                image.onload = function () {
+                    canvas.width = image.width;
+                    canvas.height = image.height;
+
+                    // Draw the full image on the canvas
+                    ctx.drawImage(image, 0, 0);
+                };
+                image.src = e.target.result;
+                imgPreview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            outputFormatDiv.style.display = "block";
+            var count = 0;
+
+            var options = document.querySelectorAll("select[name='imagetype'] option");
+            var index;
+            for (let i = 0; i < options.length; i++) {
+                const opt = options[i];
+                if (opt.value == fileType) {
+                    index = i;
+                    opt.disabled = true;
+                } else {
+                    opt.disabled = false;
+                }
             }
-        });
-        document.querySelectorAll("select[name='imagetype']").value = "";
-        convertButton.style.display = "block";
-    } else {
-        alert('This is not an Image File');
-        dropArea.classList.remove('active');
+            if (index > 0) {
+                outputFormat.value = validExtensions[0];
+            } else {
+                outputFormat.value = validExtensions[1];
+            }
+        } else {
+            alert('Only Supports PNG, JPG, JPEG, WEBP files');
+            dropArea.classList.remove('active');
+        }
     }
+}
+
+function convertAndDownload() {
+    const selectedFormat = outputFormat.value;
+    // Convert the canvas content to the chosen format
+    const convertedImage = canvas.toDataURL(selectedFormat, 0.9); // Adjust quality as needed
+    // Create a temporary download link
+    const link = document.createElement('a');
+    link.href = convertedImage;
+    link.download = `converted-image.${selectedFormat.split('/')[1]}`; // Set file extension based on format
+    link.click();
+    window.location.reload();
 }
