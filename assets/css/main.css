@@ -102,7 +102,7 @@ button.convert {
   padding: 50px;
   display: flex;
   justify-content: center;
-  background: url(/assets/images/bg-container.webp);
+  background: url(assets/images/bg-container.webp);
   background-size: cover;
   border-radius: 10px;
 }
